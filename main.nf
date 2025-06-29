@@ -47,6 +47,9 @@ workflow {
     
     // Alignment with minimap2
     ALIGNMENT(BASECALLING.out.fastq, ch_reference)
+    
+    // quick SAMtools indexing
+    INDEXING(ALIGNMENT.out.sam)
 }
 
 // Processes
@@ -122,15 +125,38 @@ process ALIGNMENT {
     
     script:
     """
-      # Index reference if needed
-      # minimap2 -d reference.mmi ${reference}
-      
-      # Align reads
-      minimap2 \\
-        -ax map-ont \\
-        ${reference} \\
-        ${fastq} > \\
-        aligned.sam
+    # Index reference if needed
+    # minimap2 -d reference.mmi ${reference}
+    # path "aligned_reads.bam.bai", emit: bai
+    # path "aligned_reads.bam", emit: bam
+    
+    # Align reads
+    minimap2 -ax map-ont ${reference} ${fastq} > aligned.sam \\
+    
+    #    samtools view -bS - | \\
+    #    samtools sort -o aligned_reads.bam -
+    
+    # Index BAM file
+    #samtools index aligned_reads.bam
+    """
+}
+
+process INDEXING {
+    container 'mgibio/samtools:v1.21-noble'
+    publishDir "${params.outdir}/bam", mode: 'copy'
+    
+    input:
+    path sam
+    
+    output:
+    path "aligned_reads.bam", emit: bam
+    path "aligned_reads.bai", emit: bai
+    
+    script:
+    """
+      # Run samtools for indexing sorting reads
+      samtools view -bS ${sam} | samtools sort -o aligned_reads.bam
+      samtools index -M aligned_reads.bam aligned_reads.bai
     """
 }
 
