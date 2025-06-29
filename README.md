@@ -21,7 +21,7 @@ This pipeline performs comprehensive analysis of Oxford Nanopore FAST5 files inc
 
 1. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.10.0`)
 
-2. Install [`Docker`](https://docs.docker.com/engine/installation/) also (https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+2. Install [`Docker`](https://docs.docker.com/engine/installation/) also [`NVIDIA-Container Toolkit`](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
 
 
