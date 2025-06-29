@@ -36,10 +36,17 @@ if (!params.fast5 ) {
 
 // Input channels
 ch_fast5 = Channel.fromPath(params.fast5, checkIfExists: true)
+ch_reference = Channel.fromPath(params.reference, checkIfExists: true)
 
 workflow {
     // Basecalling with Guppy
     BASECALLING(ch_fast5)
+    
+    // Quality control with NanoPlot
+    QUALITY_CONTROL(BASECALLING.out.fastq)
+    
+    // Alignment with minimap2
+    ALIGNMENT(BASECALLING.out.fastq, ch_reference)
 }
 
 // Processes
@@ -68,6 +75,62 @@ process BASECALLING {
     
     # Concatenate all fastq files
     cat pass/*.fastq > combined_reads.fastq
+    """
+}
+
+
+process QUALITY_CONTROL {
+    container 'quay.io/biocontainers/nanoplot:1.41.0--pyhdfd78af_0'
+    publishDir "${params.outdir}/qc", mode: 'copy'
+    
+    input:
+    path fastq
+    
+    output:
+    path "NanoPlot-report.html"
+    path "NanoStats.txt"
+    path "*.png"
+    
+    script:
+    """
+    NanoPlot \\
+        --fastq ${fastq} \\
+        --plots kde hex dot \\
+        --format png \\
+        --N50 \\
+        --dpi 300 \\
+        --store \\
+        --raw \\
+        --tsv_stats \\
+        --info_in_report \\
+        --prefix "" \\
+        --threads ${task.cpus}
+    """
+}
+
+
+process ALIGNMENT {
+    container 'quay.io/biocontainers/minimap2:2.24--h7132678_1'
+    publishDir "${params.outdir}/alignment", mode: 'copy'
+    
+    input:
+    path fastq
+    path reference
+    
+    output:
+    path "aligned.sam", emit: sam
+    
+    script:
+    """
+      # Index reference if needed
+      # minimap2 -d reference.mmi ${reference}
+      
+      # Align reads
+      minimap2 \\
+        -ax map-ont \\
+        ${reference} \\
+        ${fastq} > \\
+        aligned.sam
     """
 }
 
