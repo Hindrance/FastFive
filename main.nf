@@ -49,7 +49,10 @@ workflow {
     ALIGNMENT(BASECALLING.out.fastq, ch_reference)
     
     // quick SAMtools indexing
-    INDEXING(ALIGNMENT.out.sam)
+    SAM2BAM(ALIGNMENT.out.sam)    
+    
+    // clair3 variant calling
+    VARIANT_CALLING(SAM2BAM.out.bam, SAM2BAM.out.bai, ch_reference)
 }
 
 // Processes
@@ -106,8 +109,7 @@ process QUALITY_CONTROL {
         --raw \\
         --tsv_stats \\
         --info_in_report \\
-        --prefix "" \\
-        --threads ${task.cpus}
+        --prefix ""
     """
 }
 
@@ -141,7 +143,7 @@ process ALIGNMENT {
     """
 }
 
-process INDEXING {
+process SAM2BAM {
     container 'mgibio/samtools:v1.21-noble'
     publishDir "${params.outdir}/bam", mode: 'copy'
     
@@ -150,13 +152,47 @@ process INDEXING {
     
     output:
     path "aligned_reads.bam", emit: bam
-    path "aligned_reads.bai", emit: bai
+    path "aligned_reads.bam.bai", emit: bai
     
     script:
     """
       # Run samtools for indexing sorting reads
       samtools view -bS ${sam} | samtools sort -o aligned_reads.bam
-      samtools index -M aligned_reads.bam aligned_reads.bai
+      samtools index aligned_reads.bam aligned_reads.bam.bai
     """
 }
+
+process VARIANT_CALLING {
+    container 'hkubal/clair3:latest'
+    publishDir "${params.outdir}/variants", mode: 'copy'
+    
+    input:
+    path bam
+    path bai
+    path reference
+    
+    output:
+    path "merge_output.vcf.gz"
+    path "run_clair3.log"
+
+    
+    
+    script:
+    """
+    # quickly index the genome FA
+    samtools faidx ${reference}
+    
+    # Run Clair3 for variant calling
+    # apparently Clair3 hates white space...
+    /opt/bin/run_clair3.sh \\
+        --bam_fn=${bam} \\
+        --ref_fn=${reference} \\
+        --threads=${task.cpus} \\
+        --platform=ont \\
+        --model_path=/opt/models/ont_guppy5 \\
+        --output=. \\
+        --sample_name=sample001
+    """
+}
+
 

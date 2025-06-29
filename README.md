@@ -8,7 +8,7 @@ Putting the fast in FAST5 analysis, from alignment, to base, variant, and 5MC ca
 
 ## Introduction
 
-This pipeline performs comprehensive analysis of Oxford Nanopore FAST5 files including:
+This pipeline will perform a reasonable first-pass analysis of Oxford Nanopore FAST5 files including:
 
 - **Basecalling** with Guppy
 - **Quality Control** with NanoPlot
@@ -33,4 +33,58 @@ The pipeline performs the following steps:
 2. **Quality Control** (["NanoPlot"](https://github.com/wdecoster/NanoPlot))
 3. **Read Alignment** (["minimap2"](https://github.com/lh3/minimap2))
 4. **Sam to Bam sorting and indexing** (["samtools"](https://www.htslib.org/))
+5. **Clair3 Variant calling** (["samtools"](https://github.com/HKU-BAL/Clair3/))
+
+
+
+## Usage
+
+### Typical Command
+
+```bash
+nextflow run Hindrance/FastFive \
+    --fast5 '/path/to/fast5/files/*.fast5' \
+    --reference '/path/to/reference.fa' \
+    --outdir './results' \
+    -profile docker
+```
+
+### Input Requirements
+
+- **FAST5 files**: Oxford Nanopore raw signal files
+- **Reference genome**: FASTA format reference genome - please include the index as well (currently not supporting automated indexing, using samtools faidx reference.fa
+
+### Core Nextflow Arguments
+
+| Argument | Description |
+|----------|-------------|
+| `-profile` | Configuration profile (docker only currently) |
+| `-resume` | Resume pipeline from last successful step |
+
+### Custom Arguments
+
+| Argument | Description | Default |
+|----------|-------------|---------|
+| `--fast5` | Path to FAST5 input file(s) | None |
+| `--reference` | Path to reference genome | None |
+| `--outdir` | Output directory | `./results` |
+| `--flowcell` | Flowcell type for basecalling | `FLO-MIN106` |
+| `--kit` | Sequencing kit for basecalling | `SQK-LSK109` |
+| `--sample_name` | Sample name for analysis | `sample1` |
+
+## Output
+
+The pipeline generates the following outputs in the specified output directory:
+
+```
+results/
+├── basecalling/         # FASTQ files and sequencing summary
+├── qc/                  # Initial basecall quality control reports and plots
+├── alignment/           # SAM alignment files
+├── bam/                 # BAM files and indices
+├── variants/            # VCF files with variant calls
+├── methylation/         # Methylation calling results
+└── pipeline_info/       # Pipeline execution reports?
+```
+
 
