@@ -1,0 +1,186 @@
+[INFO] CLAIR3 VERSION: v1.1.1
+[INFO] BAM FILE PATH: /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/aligned_reads.bam
+[INFO] REFERENCE FILE PATH: /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/chr20_chr22_combined.fa
+[INFO] MODEL PATH: /opt/models/ont_guppy5
+[INFO] OUTPUT FOLDER: /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/.
+[INFO] PLATFORM: ont
+[INFO] THREADS: 1
+[INFO] BED FILE PATH: EMPTY
+[INFO] VCF FILE PATH: EMPTY
+[INFO] CONTIGS: EMPTY
+[INFO] CONDA PREFIX: 
+[INFO] SAMTOOLS PATH: samtools
+[INFO] PYTHON PATH: python3
+[INFO] PYPY PATH: pypy3
+[INFO] PARALLEL PATH: parallel
+[INFO] WHATSHAP PATH: whatshap
+[INFO] LONGPHASE PATH: EMPTY
+[INFO] CHUNK SIZE: 5000000
+[INFO] FULL ALIGN PROPORTION: 0.7
+[INFO] FULL ALIGN REFERENCE PROPORTION: 0.1
+[INFO] PHASING PROPORTION: 0.8
+[INFO] MINIMUM MQ: 5
+[INFO] MINIMUM COVERAGE: 2
+[INFO] SNP AF THRESHOLD: 0.08
+[INFO] INDEL AF THRESHOLD: 0.15
+[INFO] BASE ERROR IN GVCF: 0.001
+[INFO] GQ BIN SIZE IN GVCF: 5
+[INFO] ENABLE FILEUP ONLY CALLING: False
+[INFO] ENABLE FAST MODE CALLING: False
+[INFO] ENABLE CALLING SNP CANDIDATES ONLY: False
+[INFO] ENABLE PRINTING REFERENCE CALLS: False
+[INFO] ENABLE OUTPUT GVCF: False
+[INFO] ENABLE HAPLOID PRECISE MODE: False
+[INFO] ENABLE HAPLOID SENSITIVE MODE: False
+[INFO] ENABLE INCLUDE ALL CTGS CALLING: False
+[INFO] ENABLE NO PHASING FOR FULL ALIGNMENT: False
+[INFO] ENABLE REMOVING INTERMEDIATE FILES: False
+[INFO] ENABLE LONGPHASE FOR INTERMEDIATE VCF PHASING: False
+[INFO] ENABLE PHASING FINAL VCF OUTPUT USING WHATSHAP: False
+[INFO] ENABLE PHASING FINAL VCF OUTPUT USING LONGPHASE: False
+[INFO] ENABLE HAPLOTAGGING FINAL BAM: False
+[INFO] ENABLE LONG INDEL CALLING: False
+[INFO] ENABLE C_IMPLEMENT: True
+
++ /opt/bin/scripts/clair3_c_impl.sh --bam_fn /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/aligned_reads.bam --ref_fn /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/chr20_chr22_combined.fa --threads 1 --model_path /opt/models/ont_guppy5 --platform ont --output /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/. --bed_fn=EMPTY --vcf_fn=EMPTY --ctg_name=EMPTY --sample_name=sample001 --chunk_num=0 --chunk_size=5000000 --samtools=samtools --python=python3 --pypy=pypy3 --parallel=parallel --whatshap=whatshap --qual=2 --var_pct_full=0.7 --ref_pct_full=0.1 --var_pct_phasing=0.8 --snp_min_af=0.08 --indel_min_af=0.15 --min_mq=5 --min_coverage=2 --min_contig_size=0 --pileup_only=False --gvcf=False --base_err=0.001 --gq_bin_size=5 --fast_mode=False --call_snp_only=False --enable_variant_calling_at_sequence_head_and_tail=False --output_all_contigs_in_gvcf_header=False --print_ref_calls=False --haploid_precise=False --haploid_sensitive=False --include_all_ctgs=False --no_phasing_for_fa=False --pileup_model_prefix=pileup --fa_model_prefix=full_alignment --remove_intermediate_dir=False --enable_phasing=False --enable_long_indel=False --keep_iupac_bases=False --use_gpu=False --longphase_for_phasing=False --longphase=EMPTY --use_whatshap_for_intermediate_phasing=True --use_longphase_for_intermediate_phasing=False --use_whatshap_for_final_output_phasing=False --use_longphase_for_final_output_phasing=False --use_whatshap_for_final_output_haplotagging=False
+
+[INFO] Check environment variables
+[INFO] Create folder /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/log
+[INFO] Create folder /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/tmp/pileup_output
+[INFO] Create folder /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/tmp/merge_output
+[INFO] Create folder /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/tmp/phase_output
+[INFO] Create folder /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/tmp/gvcf_tmp_output
+[INFO] Create folder /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/tmp/full_alignment_output
+[INFO] Create folder /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/tmp/phase_output/phase_vcf
+[INFO] Create folder /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/tmp/phase_output/phase_bam
+[INFO] Create folder /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/tmp/full_alignment_output/candidate_bed
+[INFO] --include_all_ctgs not enabled, use chr{1..22,X,Y} and {1..22,X,Y} by default
+[93m[WARNING] Contig name 22 provided but no mapped reads in BAM, skip![0m
+[INFO] Call variant in contigs: 20
+[INFO] Chunk number for each contig: 13
+[INFO] 1/7 Call variants using pileup model
+Calling variants ...
+Total processed positions in 20 (chunk 1/13) : 0
+Total time elapsed: 0.03 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_1.vcf, remove empty file
+Calling variants ...
+Total processed positions in 20 (chunk 2/13) : 748
+Total time elapsed: 2.51 s
+Calling variants ...
+Total processed positions in 20 (chunk 3/13) : 0
+Total time elapsed: 0.02 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_3.vcf, remove empty file
+Calling variants ...
+Total processed positions in 20 (chunk 4/13) : 0
+Total time elapsed: 0.02 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_4.vcf, remove empty file
+Calling variants ...
+Total processed positions in 20 (chunk 5/13) : 0
+Total time elapsed: 0.03 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_5.vcf, remove empty file
+Calling variants ...
+Total processed positions in 20 (chunk 6/13) : 0
+Total time elapsed: 0.02 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_6.vcf, remove empty file
+Calling variants ...
+Total processed positions in 20 (chunk 7/13) : 0
+Total time elapsed: 0.02 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_7.vcf, remove empty file
+Calling variants ...
+Total processed positions in 20 (chunk 8/13) : 0
+Total time elapsed: 0.02 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_8.vcf, remove empty file
+Calling variants ...
+Total processed positions in 20 (chunk 9/13) : 0
+Total time elapsed: 0.02 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_9.vcf, remove empty file
+Calling variants ...
+Total processed positions in 20 (chunk 10/13) : 0
+Total time elapsed: 0.02 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_10.vcf, remove empty file
+Calling variants ...
+Total processed positions in 20 (chunk 11/13) : 0
+Total time elapsed: 0.02 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_11.vcf, remove empty file
+Calling variants ...
+Total processed positions in 20 (chunk 12/13) : 0
+Total time elapsed: 0.02 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_12.vcf, remove empty file
+Calling variants ...
+Total processed positions in 20 (chunk 13/13) : 0
+Total time elapsed: 0.02 s
+[INFO] No vcf output for file /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./tmp/pileup_output/pileup_20_13.vcf, remove empty file
+
+real	0m23.856s
+user	0m17.753s
+sys	0m3.638s
+
+[INFO] 2/7 Select heterozygous SNP variants for Whatshap phasing and haplotagging
+[93m[WARNING] Cannot find any 0/1 variant in pileup output using variant quality cut-off proportion: 0.19999999999999996, total heterozygous variants: 0[0m
+[93m[WARNING] Set low variant quality score cut-off to 0.0[0m
+[INFO] Select heterozygous pileup variants exceeding phasing quality cutoff 0
+[INFO] Total heterozygous SNP positions selected: 20: 1
+
+real	0m0.165s
+user	0m0.107s
+sys	0m0.057s
+
+[INFO] 3/7 Phase VCF file using Whatshap
+This is WhatsHap 1.7 running under Python 3.9.0
+Working on 1 sample from 1 family
+
+# Working on contig 20 in individual sample001
+Found 1 usable heterozygous variants (0 skipped due to missing genotypes)
+Found 2 reads covering 1 variants
+Kept 0 reads that cover at least two variants each
+Selected 0 most phase-informative reads covering 0 variants
+Phasing 1 sample by solving the MEC problem ...
+No. of phased blocks: 0
+
+# Resource usage
+Maximum memory usage: 0.165 GB
+Time spent reading BAM/CRAM:                    0.2 s
+Time spent parsing VCF:                         0.0 s
+Time spent selecting reads:                     0.0 s
+Time spent phasing:                             0.0 s
+Time spent writing VCF:                         0.0 s
+Time spent finding components:                  0.0 s
+Time spent on rest:                             0.0 s
+Total elapsed time:                             0.2 s
+
+real	0m0.548s
+user	0m0.291s
+sys	0m0.214s
+
+[INFO] 5/7 Select candidates for full-alignment calling
+[INFO] Set variants quality cutoff 6.0
+[INFO] Set reference calls quality cutoff 10.0
+[INFO] Low quality reference calls to be processed in 20: 72
+[INFO] Low quality variants to be processed in 20: 10
+
+real	0m0.170s
+user	0m0.112s
+sys	0m0.058s
+
+[INFO] 6/7 Call low-quality variants using full-alignment model
+Calling variants ...
+Total processed positions in 20 (chunk 1/1) : 82
+Total time elapsed: 1.01 s
+
+real	0m2.460s
+user	0m2.096s
+sys	0m0.370s
+
+[INFO] 7/7 Merge pileup VCF and full-alignment VCF
+[INFO] Pileup variants processed in 20: 6
+[INFO] Full-alignment variants processed in 20: 7
+
+real	0m0.217s
+user	0m0.147s
+sys	0m0.082s
+
+[INFO] Finish calling, output file: /home/vincent/Documents/HurdleTask/work/c0/1ff230c27207e84a6bf8fabc99ae3c/./merge_output.vcf.gz
+
+real	0m28.528s
+user	0m21.163s
+sys	0m4.747s

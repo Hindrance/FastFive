@@ -1,0 +1,159 @@
+2025-06-30 10:37:37.398739 [guppy/message] ONT Guppy basecalling software version 6.5.7+ca6d6af, minimap2 version 2.24-r1122
+config file:        /opt/ont/guppy/data/dna_r9.4.1_450bps_hac.cfg
+model file:         /opt/ont/guppy/data/template_r9.4.1_450bps_hac.jsn
+input path:         fast5_files
+save path:          .
+chunk size:         2000
+chunks per runner:  256
+minimum qscore:     9
+records per file:   4000
+num basecallers:    1
+cpu mode:           ON
+threads per caller: 4
+
+Use of this software is permitted solely under the terms of the end user license agreement (EULA).
+By running, copying or accessing this software, you are demonstrating your acceptance of the EULA.
+The EULA may be found in /opt/ont/guppy/bin
+2025-06-30 10:37:37.398929 [guppy/info] crashpad_handler not supported on this platform.
+2025-06-30 10:37:37.632544 [guppy/message] Found 45 input read files to process.
+2025-06-30 10:37:37.633192 [guppy/message] Init time: 234 ms
+2025-06-30 10:37:37.636247 [guppy/info] Read 'd2969d6f-626b-4f86-99fe-a29c8fd3e6d7' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch79_read1015_strand.fast5" has been loaded.
+2025-06-30 10:37:37.637415 [guppy/info] Read 'ba3f9234-6580-4ce8-af89-975e653b2102' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch7_read333_strand.fast5" has been loaded.
+2025-06-30 10:37:37.637449 [guppy/info] Read '5c70a7a1-e8b9-43eb-a5d0-955c1d0d5956' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch291_read757_strand.fast5" has been loaded.
+2025-06-30 10:37:37.638563 [guppy/info] Read '141c5cd0-fcab-43a2-8046-e6513c6f6329' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch241_read1450_strand.fast5" has been loaded.
+2025-06-30 10:37:37.639696 [guppy/info] Read '8506226f-afd5-4931-8d64-5a23fddef181' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch210_read117_strand.fast5" has been loaded.
+2025-06-30 10:37:37.639730 [guppy/info] Read 'eca1c9c5-56b7-4e81-b163-8f3dd91b26a7' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch251_read37_strand.fast5" has been loaded.
+2025-06-30 10:37:37.640839 [guppy/info] Read '756759f6-42ca-4393-92e6-3d2b3ed8d8d5' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch301_read41_strand.fast5" has been loaded.
+2025-06-30 10:37:37.641988 [guppy/info] Read '52b95332-1cf5-4a6f-8bc4-88fbb1cb0c2c' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch153_read646_strand.fast5" has been loaded.
+2025-06-30 10:37:37.642028 [guppy/info] Read '54222992-5816-43f6-a632-f103f9c6eaaa' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch225_read1242_strand.fast5" has been loaded.
+2025-06-30 10:37:37.642043 [guppy/info] Read '8fd3d801-0b96-4b71-9e23-61d5bd17b839' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch294_read133_strand.fast5" has been loaded.
+2025-06-30 10:37:37.644255 [guppy/info] Read '80f06ca5-b3fa-4afd-b5c6-b75ee42a3321' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch1_read445_strand.fast5" has been loaded.
+2025-06-30 10:37:37.645394 [guppy/info] Read '9b753a7e-4b7b-4b2a-88d2-f4bc5c8f4de6' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch280_read513_strand.fast5" has been loaded.
+2025-06-30 10:37:37.645430 [guppy/info] Read '71c809dc-8ef3-4a7a-ac97-b851b48c7e0d' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch253_read593_strand.fast5" has been loaded.
+2025-06-30 10:37:37.646545 [guppy/info] Read 'cc3a1127-fd4e-4b2b-890a-91d4bad253e2' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch192_read991_strand.fast5" has been loaded.
+2025-06-30 10:37:37.646598 [guppy/info] Read '6cadf0be-5d6a-4e08-ad7f-a018c8d2d8e5' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch217_read993_strand.fast5" has been loaded.
+2025-06-30 10:37:37.646614 [guppy/info] Read '75d7303c-726a-407f-8df6-59e98ef86e34' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch162_read1121_strand.fast5" has been loaded.
+2025-06-30 10:37:37.647733 [guppy/info] Read '0efb3d89-07ed-4d86-a772-f6e82b86cde3' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch183_read594_strand.fast5" has been loaded.
+2025-06-30 10:37:37.648846 [guppy/info] Read '20b654e9-37d6-4517-a60e-3e548d88f0ba' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch238_read769_strand.fast5" has been loaded.
+2025-06-30 10:37:37.650019 [guppy/info] Read '8d029257-994e-43d6-856d-9b9e4d56418e' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch228_read844_strand.fast5" has been loaded.
+2025-06-30 10:37:37.651167 [guppy/info] Read 'd92b47cc-dc3b-4f6f-af35-f24a5dcc49b1' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch163_read138_strand.fast5" has been loaded.
+2025-06-30 10:37:37.651203 [guppy/info] Read '11b6cd19-3958-4264-a6f0-04aef956ebbd' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch137_read888_strand.fast5" has been loaded.
+2025-06-30 10:37:37.651220 [guppy/info] Read 'ec712b7b-607b-4668-8d0e-1d6719e7a789' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch70_read736_strand.fast5" has been loaded.
+2025-06-30 10:37:37.653408 [guppy/info] Read '402163d6-8c8b-4585-bbc1-dd0e3b75b54a' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch168_read140_strand.fast5" has been loaded.
+2025-06-30 10:37:37.653441 [guppy/info] Read '627a9fdf-1655-4b39-a413-c8f0dfb73dc6' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch155_read1131_strand.fast5" has been loaded.
+2025-06-30 10:37:37.654582 [guppy/info] Read '836c5673-953f-40c1-ae2a-eb9bb4b2e2e5' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch212_read639_strand.fast5" has been loaded.
+2025-06-30 10:37:37.654616 [guppy/info] Read '10649b09-ea4e-48d5-8e53-04342ea381c8' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch241_read1081_strand.fast5" has been loaded.
+2025-06-30 10:37:37.655740 [guppy/info] Read 'f6ccfe7e-b2cb-4a35-ad16-4d91a9a2618a' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch58_read985_strand.fast5" has been loaded.
+2025-06-30 10:37:37.656844 [guppy/info] Read 'f861bee6-2fc0-4ee9-b1aa-660cf0b3fe67' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch287_read584_strand.fast5" has been loaded.
+2025-06-30 10:37:37.656916 [guppy/info] Read '8c395415-c8d4-4476-b77c-30c878bd8a1d' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch137_read753_strand.fast5" has been loaded.
+2025-06-30 10:37:37.658032 [guppy/info] Read '92e0e40b-7594-4cc5-ab76-69adb6568c0e' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch20_read279_strand.fast5" has been loaded.
+2025-06-30 10:37:37.658062 [guppy/info] Read '43061d3c-d952-4503-b1c1-ba243b393be1' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch261_read476_strand.fast5" has been loaded.
+2025-06-30 10:37:37.659143 [guppy/info] Read 'e71d9c76-5f60-4fbf-9d0b-ea01a2cb5225' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch318_read485_strand.fast5" has been loaded.
+2025-06-30 10:37:37.660251 [guppy/info] Read '654a81df-b05b-4654-969e-942f1cb72898' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch290_read253_strand.fast5" has been loaded.
+2025-06-30 10:37:37.661322 [guppy/info] Read '6c0114e1-ecd3-4a03-81e8-5ece5ac8686f' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch306_read731_strand.fast5" has been loaded.
+2025-06-30 10:37:37.662400 [guppy/info] Read 'f4385966-f1bf-4357-a3b3-9440cf966ec5' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch290_read1191_strand.fast5" has been loaded.
+2025-06-30 10:37:37.663478 [guppy/info] Read 'a649a4ae-c43d-492a-b6a1-a5b8b8076be4' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch115_read222_strand.fast5" has been loaded.
+2025-06-30 10:37:37.663499 [guppy/info] Read 'd1dcfbd4-9e96-4396-9ebb-9bcff012428a' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch289_read1055_strand.fast5" has been loaded.
+2025-06-30 10:37:37.664574 [guppy/info] Read '3fdd0b4a-2183-45ed-a817-c96e0b692df5' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch153_read543_strand1.fast5" has been loaded.
+2025-06-30 10:37:37.665651 [guppy/info] Read '1dbb573a-b87f-4ef5-afee-56393ec35f1b' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch57_read728_strand.fast5" has been loaded.
+2025-06-30 10:37:37.665666 [guppy/info] Read 'c3491225-815c-408b-abc6-ed864f545f4b' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch133_read675_strand.fast5" has been loaded.
+2025-06-30 10:37:37.666738 [guppy/info] Read '0113fcaf-1c05-4738-b5aa-28bcc3932475' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch186_read495_strand.fast5" has been loaded.
+2025-06-30 10:37:37.666753 [guppy/info] Read '67addb29-969e-4f8e-945e-c04f7eb700bc' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch293_read217_strand.fast5" has been loaded.
+2025-06-30 10:37:37.667797 [guppy/info] Read '9dc4d6c4-1dc0-49d0-aaa2-078408a749cf' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch149_read60_strand.fast5" has been loaded.
+2025-06-30 10:37:37.667821 [guppy/info] Read 'ca0779cd-f7a9-4784-bd69-d50d61ce1c72' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch11_read243_strand.fast5" has been loaded.
+2025-06-30 10:37:37.668896 [guppy/info] Read '0024a438-fcf8-41bd-bd8c-2b9f7601acc3' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch22_read1142_strand.fast5" has been loaded.
+2025-06-30 10:37:37.668961 [guppy/info] Dispatched batch 0 containing 45 inputs:
+2025-06-30 10:37:37.668994 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch79_read1015_strand.fast5
+2025-06-30 10:37:37.669005 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch7_read333_strand.fast5
+2025-06-30 10:37:37.669012 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch291_read757_strand.fast5
+2025-06-30 10:37:37.669019 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch241_read1450_strand.fast5
+2025-06-30 10:37:37.669026 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch210_read117_strand.fast5
+2025-06-30 10:37:37.669047 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch251_read37_strand.fast5
+2025-06-30 10:37:37.669054 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch301_read41_strand.fast5
+2025-06-30 10:37:37.669061 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch153_read646_strand.fast5
+2025-06-30 10:37:37.669067 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch225_read1242_strand.fast5
+2025-06-30 10:37:37.669074 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch294_read133_strand.fast5
+2025-06-30 10:37:37.669081 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch1_read445_strand.fast5
+2025-06-30 10:37:37.669087 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch280_read513_strand.fast5
+2025-06-30 10:37:37.669094 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch253_read593_strand.fast5
+2025-06-30 10:37:37.669100 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch192_read991_strand.fast5
+2025-06-30 10:37:37.669107 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch217_read993_strand.fast5
+2025-06-30 10:37:37.669113 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch162_read1121_strand.fast5
+2025-06-30 10:37:37.669120 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch183_read594_strand.fast5
+2025-06-30 10:37:37.669126 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch238_read769_strand.fast5
+2025-06-30 10:37:37.669133 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch228_read844_strand.fast5
+2025-06-30 10:37:37.669140 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch163_read138_strand.fast5
+2025-06-30 10:37:37.669146 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch137_read888_strand.fast5
+2025-06-30 10:37:37.669153 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch70_read736_strand.fast5
+2025-06-30 10:37:37.669159 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch168_read140_strand.fast5
+2025-06-30 10:37:37.669166 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch155_read1131_strand.fast5
+2025-06-30 10:37:37.669172 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch212_read639_strand.fast5
+2025-06-30 10:37:37.669179 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch241_read1081_strand.fast5
+2025-06-30 10:37:37.669202 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch58_read985_strand.fast5
+2025-06-30 10:37:37.669209 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch287_read584_strand.fast5
+2025-06-30 10:37:37.669215 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch137_read753_strand.fast5
+2025-06-30 10:37:37.669222 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch20_read279_strand.fast5
+2025-06-30 10:37:37.669228 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch261_read476_strand.fast5
+2025-06-30 10:37:37.669235 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch318_read485_strand.fast5
+2025-06-30 10:37:37.669241 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch290_read253_strand.fast5
+2025-06-30 10:37:37.669248 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch306_read731_strand.fast5
+2025-06-30 10:37:37.669254 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch290_read1191_strand.fast5
+2025-06-30 10:37:37.669261 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch115_read222_strand.fast5
+2025-06-30 10:37:37.669267 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch289_read1055_strand.fast5
+2025-06-30 10:37:37.669274 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch153_read543_strand1.fast5
+2025-06-30 10:37:37.669280 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch57_read728_strand.fast5
+2025-06-30 10:37:37.669287 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch133_read675_strand.fast5
+2025-06-30 10:37:37.669294 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch186_read495_strand.fast5
+2025-06-30 10:37:37.669300 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch293_read217_strand.fast5
+2025-06-30 10:37:37.669307 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch149_read60_strand.fast5
+2025-06-30 10:37:37.669313 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch11_read243_strand.fast5
+2025-06-30 10:37:37.669320 [guppy/info] Batch input 0 : fast5_files/DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch22_read1142_strand.fast5
+2025-06-30 10:37:39.569753 [guppy/info] Read 'd2969d6f-626b-4f86-99fe-a29c8fd3e6d7' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch79_read1015_strand.fast5" completed.
+2025-06-30 10:37:39.570038 [guppy/info] Read 'ba3f9234-6580-4ce8-af89-975e653b2102' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch7_read333_strand.fast5" completed.
+2025-06-30 10:37:40.547775 [guppy/info] Read '5c70a7a1-e8b9-43eb-a5d0-955c1d0d5956' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch291_read757_strand.fast5" completed.
+2025-06-30 10:37:43.575448 [guppy/info] Read '141c5cd0-fcab-43a2-8046-e6513c6f6329' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch241_read1450_strand.fast5" completed.
+2025-06-30 10:37:43.575924 [guppy/info] Read '8506226f-afd5-4931-8d64-5a23fddef181' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch210_read117_strand.fast5" completed.
+2025-06-30 10:37:45.181527 [guppy/info] Read 'eca1c9c5-56b7-4e81-b163-8f3dd91b26a7' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch251_read37_strand.fast5" completed.
+2025-06-30 10:37:46.017385 [guppy/info] Read '756759f6-42ca-4393-92e6-3d2b3ed8d8d5' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch301_read41_strand.fast5" completed.
+2025-06-30 10:37:46.971937 [guppy/info] Read '52b95332-1cf5-4a6f-8bc4-88fbb1cb0c2c' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch153_read646_strand.fast5" completed.
+2025-06-30 10:37:47.071941 [guppy/info] Read '54222992-5816-43f6-a632-f103f9c6eaaa' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch225_read1242_strand.fast5" completed.
+2025-06-30 10:37:47.936852 [guppy/info] Read '8fd3d801-0b96-4b71-9e23-61d5bd17b839' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch294_read133_strand.fast5" completed.
+2025-06-30 10:37:50.575010 [guppy/info] Read '80f06ca5-b3fa-4afd-b5c6-b75ee42a3321' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch1_read445_strand.fast5" completed.
+2025-06-30 10:37:51.250625 [guppy/info] Read '9b753a7e-4b7b-4b2a-88d2-f4bc5c8f4de6' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch280_read513_strand.fast5" completed.
+2025-06-30 10:37:51.622409 [guppy/info] Read '71c809dc-8ef3-4a7a-ac97-b851b48c7e0d' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch253_read593_strand.fast5" completed.
+2025-06-30 10:37:52.511378 [guppy/info] Read 'cc3a1127-fd4e-4b2b-890a-91d4bad253e2' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch192_read991_strand.fast5" completed.
+2025-06-30 10:37:52.654057 [guppy/info] Read '6cadf0be-5d6a-4e08-ad7f-a018c8d2d8e5' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch217_read993_strand.fast5" completed.
+2025-06-30 10:37:53.268517 [guppy/info] Read '75d7303c-726a-407f-8df6-59e98ef86e34' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch162_read1121_strand.fast5" completed.
+2025-06-30 10:37:55.588309 [guppy/info] Read '0efb3d89-07ed-4d86-a772-f6e82b86cde3' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch183_read594_strand.fast5" completed.
+2025-06-30 10:37:57.389382 [guppy/info] Read '20b654e9-37d6-4517-a60e-3e548d88f0ba' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch238_read769_strand.fast5" completed.
+2025-06-30 10:37:58.249005 [guppy/info] Read '8d029257-994e-43d6-856d-9b9e4d56418e' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch228_read844_strand.fast5" completed.
+2025-06-30 10:38:00.204932 [guppy/info] Read 'd92b47cc-dc3b-4f6f-af35-f24a5dcc49b1' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch163_read138_strand.fast5" completed.
+2025-06-30 10:38:00.352511 [guppy/info] Read '11b6cd19-3958-4264-a6f0-04aef956ebbd' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch137_read888_strand.fast5" completed.
+2025-06-30 10:38:00.688771 [guppy/info] Read 'ec712b7b-607b-4668-8d0e-1d6719e7a789' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch70_read736_strand.fast5" completed.
+2025-06-30 10:38:04.424852 [guppy/info] Read '402163d6-8c8b-4585-bbc1-dd0e3b75b54a' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch168_read140_strand.fast5" completed.
+2025-06-30 10:38:05.545152 [guppy/info] Read '627a9fdf-1655-4b39-a413-c8f0dfb73dc6' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch155_read1131_strand.fast5" completed.
+2025-06-30 10:38:07.614897 [guppy/info] Read '836c5673-953f-40c1-ae2a-eb9bb4b2e2e5' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch212_read639_strand.fast5" completed.
+2025-06-30 10:38:08.395104 [guppy/info] Read '10649b09-ea4e-48d5-8e53-04342ea381c8' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch241_read1081_strand.fast5" completed.
+2025-06-30 10:38:08.978973 [guppy/info] Read 'f6ccfe7e-b2cb-4a35-ad16-4d91a9a2618a' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch58_read985_strand.fast5" completed.
+2025-06-30 10:38:10.683463 [guppy/info] Read 'f861bee6-2fc0-4ee9-b1aa-660cf0b3fe67' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch287_read584_strand.fast5" completed.
+2025-06-30 10:38:12.645956 [guppy/info] Read '8c395415-c8d4-4476-b77c-30c878bd8a1d' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch137_read753_strand.fast5" completed.
+2025-06-30 10:38:13.535841 [guppy/info] Read '92e0e40b-7594-4cc5-ab76-69adb6568c0e' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch20_read279_strand.fast5" completed.
+2025-06-30 10:38:13.536228 [guppy/info] Read '43061d3c-d952-4503-b1c1-ba243b393be1' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch261_read476_strand.fast5" completed.
+2025-06-30 10:38:14.740722 [guppy/info] Read 'e71d9c76-5f60-4fbf-9d0b-ea01a2cb5225' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch318_read485_strand.fast5" completed.
+2025-06-30 10:38:16.656893 [guppy/info] Read '654a81df-b05b-4654-969e-942f1cb72898' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch290_read253_strand.fast5" completed.
+2025-06-30 10:38:19.047176 [guppy/info] Read '6c0114e1-ecd3-4a03-81e8-5ece5ac8686f' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch306_read731_strand.fast5" completed.
+2025-06-30 10:38:19.977330 [guppy/info] Read 'f4385966-f1bf-4357-a3b3-9440cf966ec5' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch290_read1191_strand.fast5" completed.
+2025-06-30 10:38:21.243623 [guppy/info] Read 'a649a4ae-c43d-492a-b6a1-a5b8b8076be4' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch115_read222_strand.fast5" completed.
+2025-06-30 10:38:22.355003 [guppy/info] Read 'd1dcfbd4-9e96-4396-9ebb-9bcff012428a' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch289_read1055_strand.fast5" completed.
+2025-06-30 10:38:23.116194 [guppy/info] Read '3fdd0b4a-2183-45ed-a817-c96e0b692df5' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch153_read543_strand1.fast5" completed.
+2025-06-30 10:38:24.236916 [guppy/info] Read '1dbb573a-b87f-4ef5-afee-56393ec35f1b' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch57_read728_strand.fast5" completed.
+2025-06-30 10:38:25.402935 [guppy/info] Read 'c3491225-815c-408b-abc6-ed864f545f4b' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch133_read675_strand.fast5" completed.
+2025-06-30 10:38:25.403360 [guppy/info] Read '0113fcaf-1c05-4738-b5aa-28bcc3932475' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch186_read495_strand.fast5" completed.
+2025-06-30 10:38:26.397962 [guppy/info] Read '67addb29-969e-4f8e-945e-c04f7eb700bc' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch293_read217_strand.fast5" completed.
+2025-06-30 10:38:28.210348 [guppy/info] Read '9dc4d6c4-1dc0-49d0-aaa2-078408a749cf' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch149_read60_strand.fast5" completed.
+2025-06-30 10:38:28.383403 [guppy/info] Read 'ca0779cd-f7a9-4784-bd69-d50d61ce1c72' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch11_read243_strand.fast5" completed.
+2025-06-30 10:38:28.508943 [guppy/info] Read '0024a438-fcf8-41bd-bd8c-2b9f7601acc3' from file "DEAMERNANOPORE_20161117_FNFAB43577_MN16450_sequencing_run_MA_821_R9_4_NA12878_11_17_16_88738_ch22_read1142_strand.fast5" completed.
+2025-06-30 10:38:28.519213 [guppy/info] Completed batch 0
+2025-06-30 10:38:28.594169 [guppy/message] Caller time: 50961 ms, Samples called: 1692983, samples/s: 33221.1
+2025-06-30 10:38:28.594305 [guppy/message] Finishing up any open output files.
+2025-06-30 10:38:28.800804 [guppy/message] Basecalling completed successfully.
