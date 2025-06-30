@@ -15,14 +15,13 @@ This pipeline will perform a reasonable first-pass analysis of Oxford Nanopore F
 - **Read Alignment** with minimap2 followed by Samtools, for sorting the sam -> bam
 - **Variant Calling** with Clair3
 - **Methylation Analysis** with Nanopolish
+- **Reporting and plots** with R
 
 ## Guide
 
 1. Install [`Nextflow`](https://www.nextflow.io/docs/latest/getstarted.html#installation) (`>=21.10.0`)
 
 2. Install [`Docker`](https://docs.docker.com/engine/installation/) also [`NVIDIA-Container Toolkit`](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
-
-
 
 
 ## Pipeline Summary
@@ -35,7 +34,7 @@ The pipeline performs the following steps:
 4. **Sam to Bam sorting and indexing** ([`samtools`](https://www.htslib.org/))
 5. **Clair3 Variant calls** ([`Clair3`](https://github.com/HKU-BAL/Clair3/))
 6. **Nanopolish for methylation calls** ([`Nanopolish`](https://github.com/jts/nanopolish))
-
+7. **Reports and output using R** ([`R`](https://cran.r-project.org/))
 
 
 ## Usage
@@ -53,7 +52,7 @@ nextflow run Hindrance/FastFive \
 ### Input Requirements
 
 - **FAST5 files**: Oxford Nanopore raw signal files
-- **Reference genome**: FASTA format reference genome - please include the index as well (currently not supporting automated indexing, using samtools faidx reference.fa
+- **Reference genome**: FASTA format reference genome
 
 ### Core Nextflow Arguments
 
@@ -85,7 +84,18 @@ results/
 ├── bam/                 # BAM files and indices
 ├── variants/            # VCF files with variant calls
 ├── methylation/         # Methylation calling results
-└── pipeline_reports/    # Pipeline execution reports?
+└── analysis_reports/    # Pipeline execution and summary reports?
 ```
+
+
+## The future?
+
+Future directions for this are:
+
+1. Comprehensive summary report file (HTML for example the one that Claude threw together in misc_files)
+2. Alternatively implement solutions offered in R shiny: ([`SCI-VCF`](https://github.com/HimanshuLab/SCI-VCF))
+2. Better error handling, error reporting.
+3. Move to AWS!
+
 
 

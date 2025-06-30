@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCF File Analyzer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .upload-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(180deg); }
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            z-index: 1;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-label {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .file-label:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .upload-text {
+            color: white;
+            margin-top: 15px;
+            font-size: 1.1em;
+            z-index: 1;
+            position: relative;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .control-group {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .control-group h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .filter-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .results-section {
+            display: none;
+            margin-top: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            animation: slide 2s infinite;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .chart-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .chart-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .data-table th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 600;
+        }
+
+        .data-table tr:hover {
+            background-color: #f8f9ff;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 4px solid #c62828;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+
+        .page-btn {
+            padding: 8px 16px;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            background: #667eea;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧬 VCF File Analyzer</h1>
+        
+        <div class="upload-section">
+            <div class="file-input-wrapper">
+                <input type="file" id="vcfFile" class="file-input" accept=".vcf,.vcf.gz">
+                <label for="vcfFile" class="file-label">Choose VCF File</label>
+            </div>
+            <div class="upload-text">Select a VCF file to analyze genetic variants</div>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <h3>Quality Filters</h3>
+                <input type="number" id="qualFilter" class="filter-input" placeholder="Minimum Quality Score" min="0">
+                <input type="number" id="depthFilter" class="filter-input" placeholder="Minimum Depth" min="0" style="margin-top: 10px;">
+            </div>
+            
+            <div class="control-group">
+                <h3>Chromosome Filter</h3>
+                <input type="text" id="chromFilter" class="filter-input" placeholder="Chromosome (e.g., chr1, 1, X)">
+            </div>
+            
+            <div class="control-group">
+                <h3>Variant Type</h3>
+                <select id="variantTypeFilter" class="filter-input">
+                    <option value="">All Types</option>
+                    <option value="SNP">SNP</option>
+                    <option value="INDEL">INDEL</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <h3>Actions</h3>
+                <button class="btn" onclick="applyFilters()">Apply Filters</button>
+                <button class="btn" onclick="resetFilters()">Reset</button>
+                <button class="btn" onclick="exportResults()">Export CSV</button>
+            </div>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Processing VCF file...</p>
+        </div>
+
+        <div class="results-section" id="results">
+            <div class="stats-grid" id="statsGrid"></div>
+            
+            <div class="chart-container">
+                <div class="chart-box">
+                    <div class="chart-title">Variant Types Distribution</div>
+                    <canvas id="variantTypeChart" width="400" height="300"></canvas>
+                </div>
+                
+                <div class="chart-box">
+                    <div class="chart-title">Quality Score Distribution</div>
+                    <canvas id="qualityChart" width="400" height="300"></canvas>
+                </div>
+                
+                <div class="chart-box">
+                    <div class="chart-title">Variants by Chromosome</div>
+                    <canvas id="chromosomeChart" width="400" height="300"></canvas>
+                </div>
+                
+                <div class="chart-box">
+                    <div class="chart-title">Depth Distribution</div>
+                    <canvas id="depthChart" width="400" height="300"></canvas>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table" id="variantTable">
+                    <thead>
+                        <tr>
+                            <th>Chromosome</th>
+                            <th>Position</th>
+                            <th>ID</th>
+                            <th>Reference</th>
+                            <th>Alternative</th>
+                            <th>Quality</th>
+                            <th>Filter</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+                <div class="pagination" id="pagination"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let vcfData = [];
+        let filteredData = [];
+        let currentPage = 1;
+        const rowsPerPage = 50;
+
+        // File upload handler
+        document.getElementById('vcfFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('results').style.display = 'none';
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        parseVCF(e.target.result);
+                    } catch (error) {
+                        showError('Error parsing VCF file: ' + error.message);
+                        document.getElementById('loading').style.display = 'none';
+                    }
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        function parseVCF(vcfContent) {
+            const lines = vcfContent.split('\n');
+            vcfData = [];
+            
+            for (let line of lines) {
+                if (line.startsWith('#') || line.trim() === '') continue;
+                
+                const fields = line.split('\t');
+                if (fields.length < 8) continue;
+                
+                const variant = {
+                    chromosome: fields[0],
+                    position: parseInt(fields[1]),
+                    id: fields[2] || '.',
+                    reference: fields[3],
+                    alternative: fields[4],
+                    quality: parseFloat(fields[5]) || 0,
+                    filter: fields[6],
+                    info: fields[7],
+                    type: getVariantType(fields[3], fields[4]),
+                    depth: extractDepth(fields[7])
+                };
+                
+                vcfData.push(variant);
+            }
+            
+            filteredData = [...vcfData];
+            displayResults();
+            document.getElementById('loading').style.display = 'none';
+        }
+
+        function getVariantType(ref, alt) {
+            if (ref.length === 1 && alt.length === 1) {
+                return 'SNP';
+            } else {
+                return 'INDEL';
+            }
+        }
+
+        function extractDepth(info) {
+            const dpMatch = info.match(/DP=(\d+)/);
+            return dpMatch ? parseInt(dpMatch[1]) : 0;
+        }
+
+        function displayResults() {
+            document.getElementById('results').style.display = 'block';
+            
+            displayStats();
+            createCharts();
+            displayTable();
+        }
+
+        function displayStats() {
+            const stats = calculateStats(filteredData);
+            const statsGrid = document.getElementById('statsGrid');
+            
+            statsGrid.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${stats.totalVariants.toLocaleString()}</div>
+                    <div class="stat-label">Total Variants</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.snpCount.toLocaleString()}</div>
+                    <div class="stat-label">SNPs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.indelCount.toLocaleString()}</div>
+                    <div class="stat-label">INDELs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.avgQuality.toFixed(1)}</div>
+                    <div class="stat-label">Avg Quality</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.chromosomes}</div>
+                    <div class="stat-label">Chromosomes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.avgDepth.toFixed(1)}</div>
+                    <div class="stat-label">Avg Depth</div>
+                </div>
+            `;
+        }
+
+        function calculateStats(data) {
+            const snpCount = data.filter(v => v.type === 'SNP').length;
+            const indelCount = data.filter(v => v.type === 'INDEL').length;
+            const totalQuality = data.reduce((sum, v) => sum + v.quality, 0);
+            const totalDepth = data.reduce((sum, v) => sum + v.depth, 0);
+            const chromosomes = new Set(data.map(v => v.chromosome)).size;
+            
+            return {
+                totalVariants: data.length,
+                snpCount,
+                indelCount,
+                avgQuality: data.length > 0 ? totalQuality / data.length : 0,
+                avgDepth: data.length > 0 ? totalDepth / data.length : 0,
+                chromosomes
+            };
+        }
+
+        function createCharts() {
+            createVariantTypeChart();
+            createQualityChart();
+            createChromosomeChart();
+            createDepthChart();
+        }
+
+        function createVariantTypeChart() {
+            const ctx = document.getElementById('variantTypeChart').getContext('2d');
+            const snpCount = filteredData.filter(v => v.type === 'SNP').length;
+            const indelCount = filteredData.filter(v => v.type === 'INDEL').length;
+            
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['SNPs', 'INDELs'],
+                    datasets: [{
+                        data: [snpCount, indelCount],
+                        backgroundColor: ['#667eea', '#764ba2'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        function createQualityChart() {
+            const ctx = document.getElementById('qualityChart').getContext('2d');
+            const qualities = filteredData.map(v => v.quality).filter(q => q > 0);
+            const bins = createHistogramBins(qualities, 20);
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: bins.labels,
+                    datasets: [{
+                        label: 'Frequency',
+                        data: bins.counts,
+                        backgroundColor: 'rgba(102, 126, 234, 0.7)',
+                        borderColor: '#667eea',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function createChromosomeChart() {
+            const ctx = document.getElementById('chromosomeChart').getContext('2d');
+            const chromCounts = {};
+            
+            filteredData.forEach(v => {
+                chromCounts[v.chromosome] = (chromCounts[v.chromosome] || 0) + 1;
+            });
+            
+            const sortedChroms = Object.keys(chromCounts).sort((a, b) => {
+                const numA = parseInt(a.replace(/\D/g, '')) || 999;
+                const numB = parseInt(b.replace(/\D/g, '')) || 999;
+                return numA - numB;
+            });
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedChroms,
+                    datasets: [{
+                        label: 'Variant Count',
+                        data: sortedChroms.map(chr => chromCounts[chr]),
+                        backgroundColor: 'rgba(118, 75, 162, 0.7)',
+                        borderColor: '#764ba2',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function createDepthChart() {
+            const ctx = document.getElementById('depthChart').getContext('2d');
+            const depths = filteredData.map(v => v.depth).filter(d => d > 0);
+            const bins = createHistogramBins(depths, 15);
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: bins.labels,
+                    datasets: [{
+                        label: 'Frequency',
+                        data: bins.counts,
+                        borderColor: '#f5576c',
+                        backgroundColor: 'rgba(245, 87, 108, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function createHistogramBins(data, numBins) {
+            if (data.length === 0) return { labels: [], counts: [] };
+            
+            const min = Math.min(...data);
+            const max = Math.max(...data);
+            const binSize = (max - min) / numBins;
+            
+            const bins = Array(numBins).fill(0);
+            const labels = [];
+            
+            for (let i = 0; i < numBins; i++) {
+                const binStart = min + i * binSize;
+                const binEnd = min + (i + 1) * binSize;
+                labels.push(`${binStart.toFixed(1)}-${binEnd.toFixed(1)}`);
+            }
+            
+            data.forEach(value => {
+                const binIndex = Math.min(Math.floor((value - min) / binSize), numBins - 1);
+                bins[binIndex]++;
+            });
+            
+            return { labels, counts: bins };
+        }
+
+        function displayTable() {
+            const tableBody = document.getElementById('tableBody');
+            const startIndex = (currentPage - 1) * rowsPerPage;
+            const endIndex = startIndex + rowsPerPage;
+            const pageData = filteredData.slice(startIndex, endIndex);
+            
+            tableBody.innerHTML = pageData.map(variant => `
+                <tr>
+                    <td>${variant.chromosome}</td>
+                    <td>${variant.position.toLocaleString()}</td>
+                    <td>${variant.id}</td>
+                    <td>${variant.reference}</td>
+                    <td>${variant.alternative}</td>
+                    <td>${variant.quality.toFixed(1)}</td>
+                    <td>${variant.filter}</td>
+                    <td><span style="background: ${variant.type === 'SNP' ? '#667eea' : '#764ba2'}; color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.8em;">${variant.type}</span></td>
+                </tr>
+            `).join('');
+            
+            updatePagination();
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+            const pagination = document.getElementById('pagination');
+            
+            let paginationHTML = '';
+            
+            if (currentPage > 1) {
+                paginationHTML += `<button class="page-btn" onclick="goToPage(${currentPage - 1})">Previous</button>`;
+            }
+            
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, currentPage + 2);
+            
+            for (let i = startPage; i <= endPage; i++) {
+                paginationHTML += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+            }
+            
+            if (currentPage < totalPages) {
+                paginationHTML += `<button class="page-btn" onclick="goToPage(${currentPage + 1})">Next</button>`;
+            }
+            
+            paginationHTML += `<span style="margin-left: 20px;">Page ${currentPage} of ${totalPages} (${filteredData.length.toLocaleString()} variants)</span>`;
+            
+            pagination.innerHTML = paginationHTML;
+        }
+
+        function goToPage(page) {
+            currentPage = page;
+            displayTable();
+        }
+
+        function applyFilters() {
+            const qualFilter = parseFloat(document.getElementById('qualFilter').value) || 0;
+            const depthFilter = parseFloat(document.getElementById('depthFilter').value) || 0;
+            const chromFilter = document.getElementById('chromFilter').value.trim();
+            const variantTypeFilter = document.getElementById('variantTypeFilter').value;
+            
+            filteredData = vcfData.filter(variant => {
+                if (qualFilter > 0 && variant.quality < qualFilter) return false;
+                if (depthFilter > 0 && variant.depth < depthFilter) return false;
+                if (chromFilter && !variant.chromosome.toLowerCase().includes(chromFilter.toLowerCase())) return false;
+                if (variantTypeFilter && variant.type !== variantTypeFilter) return false;
+                return true;
+            });
+            
+            currentPage = 1;
+            displayResults();
+        }
+
+        function resetFilters() {
+            document.getElementById('qualFilter').value = '';
+            document.getElementById('depthFilter').value = '';
+            document.getElementById('chromFilter').value = '';
+            document.getElementById('variantTypeFilter').value = '';
+            
+            filteredData = [...vcfData];
+            currentPage = 1;
+            displayResults();
+        }
+
+        function exportResults() {
+            if (filteredData.length === 0) {
+                alert('No data to export');
+                return;
+            }
+            
+            const csv = [
+                ['Chromosome', 'Position', 'ID', 'Reference', 'Alternative', 'Quality', 'Filter', 'Type', 'Depth'].join(','),
+                ...filteredData.map(v => [
+                    v.chromosome,
+                    v.position,
+                    v.id,
+                    v.reference,
+                    v.alternative,
+                    v.quality,
+                    v.filter,
+                    v.type,
+                    v.depth
+                ].join(','))
+            ].join('\n');
+            
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'vcf_analysis_results.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.textContent = message;
+            document.querySelector('.container').insertBefore(errorDiv, document.querySelector('.controls'));
+            
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

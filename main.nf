@@ -57,6 +57,8 @@ workflow {
      // Methylation calling with Nanopolish
     METHYLATION_CALLING(SAM2BAM.out.bam, SAM2BAM.out.bai, ch_reference, ch_fast5, BASECALLING.out.fastq)
     
+    // Reports and fun plot times with R
+    ANALYSIS_REPORTS(METHYLATION_CALLING.out.methyl_tsv, ch_reference, ch_fast5)
 }
 
 // Processes
@@ -130,20 +132,11 @@ process ALIGNMENT {
     path "aligned.sam", emit: sam
     
     script:
-    """
-    # Index reference if needed
-    # minimap2 -d reference.mmi ${reference}
-    # path "aligned_reads.bam.bai", emit: bai
-    # path "aligned_reads.bam", emit: bam
-    
+    """    
     # Align reads
     minimap2 -ax map-ont ${reference} ${fastq} > aligned.sam \\
     
-    #    samtools view -bS - | \\
-    #    samtools sort -o aligned_reads.bam -
-    
-    # Index BAM file
-    #samtools index aligned_reads.bam
+
     """
 }
 
@@ -212,7 +205,7 @@ process METHYLATION_CALLING {
     path fastq
     
     output:
-    path "methylation_calls.tsv"
+    path "methylation_calls.tsv", emit: methyl_tsv
     
     script:
     """
@@ -225,13 +218,76 @@ process METHYLATION_CALLING {
         --bam=${bam} \\
         --genome=${reference} \\
         --t=1 > methylation_calls.tsv
+    """
+}
+
+process ANALYSIS_REPORTS {
+    container 'r-base:latest'
+    publishDir "${params.outdir}/analysis_reports", mode: 'copy'
+   
+    input:
+    path methyl_tsv
+    path fast5
+    path reference
     
-    # Calculate methylation frequency
-    #nanopolish-methylation-utilities calculate_methylation_frequency.py \\
-    #    -i methylation_calls.tsv \\
-    #    -s > methylation_frequency.tsv
-    # path "methylation_frequency.tsv"
+    output:
+    path "*.png"
     
+    script:
+    """
+    # quick R script for fun...    
+    cat > analyze_data.R << 'EOF'
+    #!/usr/bin/env R
+    quickPlot = function(methyl_path){
+      genome_df = data.frame(
+        "chromosome" = as.character(c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22, "x", "y")),
+        "min" = c(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0),
+        "max" = c(247000000,242951149,199501827,191273063,180857866,170899992,158821424,146274826,140273252,135374737,
+        134452384,132349534,114142980,106368585,100338915,88827254,78774742,76117153,63811651,62435964,46944323,49691432,154913754,57772954
+        )
+      )
+
+      #x = read.csv("methylation_calls.tsv", sep="\t")
+      x = read.csv(methyl_path, sep="\t")
+      x_meth = x[x[,"log_lik_ratio"] > 0,]
+
+      bw = 500000
+
+      png("genome_pileup_plot.png", width=1200, height=1000)
+      par(cex=1.5)
+      plot(c(0, max(genome_df[,"max"])), c(1,24), pch=NA, xlab="bases", ylab="chromosome", yaxt="n")
+      axis(2, at=1:24, label=c("x", "y", as.character(22:1)))#
+
+      for(chr in 1:nrow(genome_df)){
+        lines(c(genome_df[chr,"min"], genome_df[chr,"max"]), rep(25-chr,2), lwd=1)
+        
+        if(chr %in% unique(as.character(x[,"chromosome"]))){
+        
+          freq_bins = seq(genome_df[chr,"min"], genome_df[chr,"max"], bw)
+
+          freq_table = sapply(1:(length(freq_bins)-1), function(i){sum(x[,4] > freq_bins[i] & x[,4] <= freq_bins[i+1])})
+          freq_table2 = (freq_table / max(freq_table))*0.8
+          
+          
+          
+          for(i in 1:length(freq_bins)){
+            rect(freq_bins[i], (25-chr)+0, freq_bins[i+1], (25-chr)+freq_table2[i+1], col="grey", lty=0)
+          }
+          
+          
+          freq_table_meth = sapply(1:(length(freq_bins)-1), function(i){sum(x_meth[,4] > freq_bins[i] & x_meth[,4] <= freq_bins[i+1])})
+          freq_table_meth2 = (freq_table_meth / max(freq_table))*0.8
+          
+          for(i in 1:length(freq_bins)){
+            rect(freq_bins[i], (25-chr)+0, freq_bins[i+1], (25-chr)+freq_table_meth2[i+1], col="red", lty=0)
+          }
+        }
+      }
+      dev.off()
+    }
+    quickPlot("${methyl_tsv}")
+EOF
+    Rscript analyze_data.R
     """
 }
 
