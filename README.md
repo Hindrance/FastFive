@@ -53,6 +53,7 @@ nextflow run Hindrance/FastFive \
 ### Example for Test Data
 ```bash
 cd FastFive
+unzip test_files.zip
 nextflow run main.nf \
     --fast5 "test_files/fast5_files" \
     --reference "test_files/genomes/GRCh38/chr20_chr22_combined.fa" \
