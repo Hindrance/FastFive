@@ -37,6 +37,7 @@ The pipeline performs the following steps:
 7. **Reports and output using R** ([`R`](https://cran.r-project.org/))
 
 
+
 ## Usage
 
 ### Typical Command
@@ -46,6 +47,16 @@ nextflow run Hindrance/FastFive \
     --fast5 '/path/to/fast5/files/*.fast5' \
     --reference '/path/to/reference.fa' \
     --outdir './results' \
+    -profile docker
+```
+
+### Example for Test Data
+```bash
+cd FastFive
+nextflow run main.nf \
+    --fast5 "test_files/fast5_files" \
+    --reference "test_files/genomes/GRCh38/chr20_chr22_combined.fa" \
+    --outdir "test_results" \
     -profile docker
 ```
 
@@ -94,8 +105,7 @@ Future directions for this are:
 
 1. Comprehensive summary report file (HTML for example the one that Claude threw together in misc_files)
 2. Alternatively implement solutions offered in R shiny: ([`SCI-VCF`](https://github.com/HimanshuLab/SCI-VCF))
-2. Better error handling, error reporting.
-3. Move to AWS!
-
-
+3. fix Test profile runs
+4. Better error handling, error reporting.
+5. Move to AWS!
 

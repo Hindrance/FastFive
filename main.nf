@@ -4,6 +4,7 @@ nextflow.enable.dsl = 2
 
 // Parameters
 params.fast5 = null
+params.reference = null
 params.outdir = "results"
 params.help = false
 
@@ -15,7 +16,9 @@ def helpMessage() {
 
     Required arguments:
     --fast5         Path to input FAST5 file
-
+    --reference         Path to input genome fasta file
+    
+    
     Optional arguments:
     --outdir        Output directory (default: results)
     --help          Show this help message
@@ -28,7 +31,7 @@ if (params.help) {
 }
 
 // Validate required parameters
-if (!params.fast5 ) {
+if (!params.fast5 | !params.reference) {
     log.error "Both --fast5 and --reference arguments are required"
     helpMessage()
     exit 1
