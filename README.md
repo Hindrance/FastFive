@@ -29,11 +29,12 @@ This pipeline will perform a reasonable first-pass analysis of Oxford Nanopore F
 
 The pipeline performs the following steps:
 
-1. **Basecalling** (["Guppy"](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/Guppy-protocol/v/gpb_2003_v1_revak_14dec2018))
-2. **Quality Control** (["NanoPlot"](https://github.com/wdecoster/NanoPlot))
-3. **Read Alignment** (["minimap2"](https://github.com/lh3/minimap2))
-4. **Sam to Bam sorting and indexing** (["samtools"](https://www.htslib.org/))
-5. **Clair3 Variant calling** (["samtools"](https://github.com/HKU-BAL/Clair3/))
+1. **Basecalling** ([`Guppy`](https://community.nanoporetech.com/docs/prepare/library_prep_protocols/Guppy-protocol/v/gpb_2003_v1_revak_14dec2018))
+2. **Quality Control** ([`NanoPlot`](https://github.com/wdecoster/NanoPlot))
+3. **Read Alignment** ([`minimap2`](https://github.com/lh3/minimap2))
+4. **Sam to Bam sorting and indexing** ([`samtools`](https://www.htslib.org/))
+5. **Clair3 Variant calls** ([`Clair3`](https://github.com/HKU-BAL/Clair3/))
+6. **Nanopolish for methylation calls** ([`Nanopolish`](https://github.com/jts/nanopolish))
 
 
 
@@ -70,7 +71,7 @@ nextflow run Hindrance/FastFive \
 | `--outdir` | Output directory | `./results` |
 | `--flowcell` | Flowcell type for basecalling | `FLO-MIN106` |
 | `--kit` | Sequencing kit for basecalling | `SQK-LSK109` |
-| `--sample_name` | Sample name for analysis | `sample1` |
+| `--sample_name` | Sample name for analysis | `sample001` |
 
 ## Output
 
@@ -84,7 +85,7 @@ results/
 ├── bam/                 # BAM files and indices
 ├── variants/            # VCF files with variant calls
 ├── methylation/         # Methylation calling results
-└── pipeline_info/       # Pipeline execution reports?
+└── pipeline_reports/    # Pipeline execution reports?
 ```
 
 

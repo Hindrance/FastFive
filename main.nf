@@ -53,6 +53,10 @@ workflow {
     
     // clair3 variant calling
     VARIANT_CALLING(SAM2BAM.out.bam, SAM2BAM.out.bai, ch_reference)
+    
+     // Methylation calling with Nanopolish
+    METHYLATION_CALLING(SAM2BAM.out.bam, SAM2BAM.out.bai, ch_reference, ch_fast5, BASECALLING.out.fastq)
+    
 }
 
 // Processes
@@ -194,5 +198,42 @@ process VARIANT_CALLING {
         --sample_name=sample001
     """
 }
+
+
+process METHYLATION_CALLING {
+    container 'quay.io/biocontainers/nanopolish:0.14.0--hee927d3_5'
+    publishDir "${params.outdir}/methylation", mode: 'copy'
+   
+    input:
+    path bam
+    path bai
+    path reference
+    path fast5
+    path fastq
+    
+    output:
+    path "methylation_calls.tsv"
+    
+    script:
+    """
+    # Index the fast5 files
+    nanopolish index -d . ${fastq}
+    
+    # Call methylation
+    nanopolish call-methylation \\
+        --reads=${fastq} \\
+        --bam=${bam} \\
+        --genome=${reference} \\
+        --t=1 > methylation_calls.tsv
+    
+    # Calculate methylation frequency
+    #nanopolish-methylation-utilities calculate_methylation_frequency.py \\
+    #    -i methylation_calls.tsv \\
+    #    -s > methylation_frequency.tsv
+    # path "methylation_frequency.tsv"
+    
+    """
+}
+
 
 
